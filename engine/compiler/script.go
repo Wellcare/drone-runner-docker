@@ -3,9 +3,9 @@
 // that can be found in the LICENSE file.
 
 package compiler
-import "fmt"
 
 import (
+	"github.com/sirupsen/logrus"
 	"github.com/wellcare/drone-runner-docker/engine"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell/powershell"
@@ -39,7 +39,7 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 func setupScriptPosix(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"/bin/sh", "-c"}
 	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/sh`}
-	fmt.Print("src.Commands: ", src.Commands)
+	logrus.Debugln(src.Commands)
 	dst.Envs["DRONE_SCRIPT"] = shell.Script(src.Commands)
-	fmt.Print("DRONE_SCRIPT: ",dst.Envs["DRONE_SCRIPT"])
+	logrus.Debugln(dst.Envs["DRONE_SCRIPT"])
 }
