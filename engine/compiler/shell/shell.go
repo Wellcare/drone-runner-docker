@@ -40,7 +40,7 @@ if [ ! -z "${DRONE_NETRC_FILE}" ]; then
 	chmod 600 $HOME/.netrc
 fi
 
-unset RUNNER_SCRIPT
+unset DRONE_SCRIPT
 unset DRONE_NETRC_MACHINE
 unset DRONE_NETRC_USERNAME
 unset DRONE_NETRC_PASSWORD

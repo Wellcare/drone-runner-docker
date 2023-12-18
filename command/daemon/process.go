@@ -5,10 +5,10 @@
 package daemon
 
 import (
-	"github.com/drone-runners/drone-runner-docker/engine"
-	"github.com/drone-runners/drone-runner-docker/engine/compiler"
-	"github.com/drone-runners/drone-runner-docker/engine/linter"
-	"github.com/drone-runners/drone-runner-docker/engine/resource"
+	"github.com/wellcare/drone-runner-docker/engine"
+	"github.com/wellcare/drone-runner-docker/engine/compiler"
+	"github.com/wellcare/drone-runner-docker/engine/linter"
+	"github.com/wellcare/drone-runner-docker/engine/resource"
 	"github.com/drone/runner-go/pipeline/uploader"
 
 	"github.com/drone/runner-go/client"

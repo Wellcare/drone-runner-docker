@@ -8,7 +8,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/drone-runners/drone-runner-docker/engine/resource"
+	"github.com/wellcare/drone-runner-docker/engine/resource"
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/runner-go/manifest"
 )

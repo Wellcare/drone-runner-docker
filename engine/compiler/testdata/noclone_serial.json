@@ -4,7 +4,7 @@
     {
       "id": "random",
       "args": [
-        "echo \"$RUNNER_SCRIPT\" | /bin/sh"
+        "echo \"$DRONE_SCRIPT\" | /bin/sh"
       ],
       "entrypoint": [
         "/bin/sh",
