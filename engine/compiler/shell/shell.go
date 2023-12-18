@@ -40,7 +40,7 @@ if [ ! -z "${DRONE_NETRC_FILE}" ]; then
 	chmod 600 $HOME/.netrc
 fi
 
-unset DRONE_SCRIPT
+unset RUNNER_SCRIPT
 unset DRONE_NETRC_MACHINE
 unset DRONE_NETRC_USERNAME
 unset DRONE_NETRC_PASSWORD
@@ -77,4 +77,5 @@ if [ "${DRONE_BUILD_DEBUG}" = "true" ]; then
 	fi
 	trap remote_debug EXIT
 fi
+
 `

@@ -45,7 +45,7 @@ password $Env:DRONE_NETRC_PASSWORD
 [Environment]::SetEnvironmentVariable("DRONE_NETRC_PASSWORD", $null);
 [Environment]::SetEnvironmentVariable("DRONE_NETRC_USERNAME", $null);
 [Environment]::SetEnvironmentVariable("DRONE_NETRC_PASSWORD", $null);
-[Environment]::SetEnvironmentVariable("DRONE_SCRIPT", $null);
+[Environment]::SetEnvironmentVariable("RUNNER_SCRIPT", $null);
 
 $erroractionpreference = "stop"
 `

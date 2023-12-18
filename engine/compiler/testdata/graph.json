@@ -20,7 +20,7 @@
     {
       "id": "random",
       "args": [
-        "echo \"$DRONE_SCRIPT\" | /bin/sh"
+        "echo \"$RUNNER_SCRIPT\" | /bin/sh"
       ],
       "depends_on": [
         "clone"
@@ -44,7 +44,7 @@
     {
       "id": "random",
       "args": [
-        "echo \"$DRONE_SCRIPT\" | /bin/sh"
+        "echo \"$RUNNER_SCRIPT\" | /bin/sh"
       ],
       "depends_on": [
         "build"
