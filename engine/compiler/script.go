@@ -5,7 +5,8 @@
 package compiler
 
 import (
-	"github.com/sirupsen/logrus"
+	"fmt"
+	"regexp"
 	"github.com/wellcare/drone-runner-docker/engine"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell/powershell"
@@ -30,8 +31,13 @@ func setupScript(src *resource.Step, dst *engine.Step, os string) {
 func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"powershell", "-noprofile", "-noninteractive", "-command"}
 	dst.Command = []string{"echo $Env:DRONE_SCRIPT | iex"}
+	fmt.Println(src.Commands)
 	dst.Envs["DRONE_SCRIPT"] = powershell.Script(src.Commands)
 	dst.Envs["SHELL"] = "powershell.exe"
+	fmt.Println(dst.Envs["DRONE_SCRIPT"])
+	
+	re := regexp.MustCompile(`#end.*`)
+	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
 }
 
 // helper function configures the pipeline script for the
@@ -39,7 +45,10 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 func setupScriptPosix(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"/bin/sh", "-c"}
 	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/sh`}
-	logrus.Debugln(src.Commands)
+	fmt.Println(src.Commands)
 	dst.Envs["DRONE_SCRIPT"] = shell.Script(src.Commands)
-	logrus.Debugln(dst.Envs["DRONE_SCRIPT"])
+	fmt.Println(dst.Envs["DRONE_SCRIPT"])
+
+	re := regexp.MustCompile(`#end.*`)
+	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
 }
