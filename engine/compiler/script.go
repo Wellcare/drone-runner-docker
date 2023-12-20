@@ -6,7 +6,6 @@ package compiler
 
 import (
 	"fmt"
-	"regexp"
 	"github.com/wellcare/drone-runner-docker/engine"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell"
 	"github.com/wellcare/drone-runner-docker/engine/compiler/shell/powershell"
