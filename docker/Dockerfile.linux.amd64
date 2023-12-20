@@ -1,4 +1,5 @@
 FROM grafana/alpine as alpine
+RUN ls /etc/ssl/certs/
 # RUN apk add -U --no-cache ca-certificates
 
 # RUN wget https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz
