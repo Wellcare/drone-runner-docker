@@ -1,4 +1,4 @@
-FROM alpine:3 as alpine
+FROM grafana/alpine as alpine
 RUN apk add -U --no-cache ca-certificates
 
 # RUN wget https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz
@@ -6,19 +6,19 @@ RUN apk add -U --no-cache ca-certificates
 # RUN mv tmate-2.4.0-static-linux-amd64/tmate /bin/
 # RUN chmod +x /bin/tmate
 
-# FROM alpine:3
-# EXPOSE 3000
+FROM alpine:3
+EXPOSE 3000
 
-# ENV GODEBUG netdns=go
-# ENV DRONE_PLATFORM_OS linux
-# ENV DRONE_PLATFORM_ARCH amd64
+ENV GODEBUG netdns=go
+ENV DRONE_PLATFORM_OS linux
+ENV DRONE_PLATFORM_ARCH amd64
 
-# RUN env
+RUN env
 
 # COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 # COPY --from=alpine /bin/tmate /bin/
 
-# LABEL com.centurylinklabs.watchtower.stop-signal="SIGINT"
+LABEL com.centurylinklabs.watchtower.stop-signal="SIGINT"
 
 ADD release/linux/amd64/drone-runner-docker /bin/
 ENTRYPOINT ["/bin/drone-runner-docker"]
