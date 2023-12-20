@@ -13,7 +13,7 @@
       "environment": {},
       "labels": {},
       "name": "build",
-      "image": "docker.io/library/golang:latest",
+      "image": "docker.io/library/golang:alpine",
       "volumes": [
         {
           "name": "_workspace",
@@ -37,7 +37,7 @@
       "environment": {},
       "labels": {},
       "name": "test",
-      "image": "docker.io/library/golang:latest",
+      "image": "docker.io/library/golang:alpine",
       "run_policy": "never",
       "volumes": [
         {

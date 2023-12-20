@@ -11,7 +11,7 @@ platform:
 
 steps:
   - name: test
-    image: golang:1.16
+    image: golang:alpine
     commands:
       - go test -cover ./...
     volumes:
@@ -19,7 +19,7 @@ steps:
         path: /go
 
   - name: build
-    image: golang:1.16
+    image: golang:alpine
     commands:
       - sh scripts/build.sh
     volumes:
@@ -43,7 +43,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:alpine
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -51,7 +51,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:alpine
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -96,7 +96,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:alpine
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -104,7 +104,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:alpine
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -149,7 +149,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:alpine
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -157,7 +157,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:alpine
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -203,7 +203,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.16
+    image: golang:alpine
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -211,7 +211,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.16
+    image: golang:alpine
     environment:
       CGO_ENABLED: "0"
     commands:
