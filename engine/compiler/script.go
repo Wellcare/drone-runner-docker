@@ -34,6 +34,9 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 	fmt.Println(src.Commands)
 	dst.Envs["DRONE_SCRIPT"] = powershell.Script(src.Commands)
 	dst.Envs["SHELL"] = "powershell.exe"
+	re := regexp.MustCompile(`#END.*`)
+	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
+	fmt.Println("DRONE_SCRIPT")
 	fmt.Println(dst.Envs["DRONE_SCRIPT"])
 }
 
