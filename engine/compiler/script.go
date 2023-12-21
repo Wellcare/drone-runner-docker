@@ -34,9 +34,6 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 	dst.Envs["DRONE_SCRIPT"] = powershell.Script(src.Commands)
 	dst.Envs["SHELL"] = "powershell.exe"
 	fmt.Println(dst.Envs["DRONE_SCRIPT"])
-	
-	// re := regexp.MustCompile(`#end.*`)
-	// dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
 }
 
 // helper function configures the pipeline script for the
@@ -44,10 +41,11 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 func setupScriptPosix(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"/bin/sh", "-c"}
 	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/sh`}
+	fmt.Println("src.Commands")
 	fmt.Println(src.Commands)
-	dst.Envs["DRONE_SCRIPT"] = shell.Script(src.Commands)
+	re := regexp.MustCompile(`#END.*`)
+	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
+	fmt.Println("DRONE_SCRIPT")
 	fmt.Println(dst.Envs["DRONE_SCRIPT"])
 
-	// re := regexp.MustCompile(`#end.*`)
-	// dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
 }

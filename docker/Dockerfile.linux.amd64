@@ -15,7 +15,7 @@ ENV DRONE_PLATFORM_ARCH amd64
 
 RUN env
 
-COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+# COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 # COPY --from=alpine /bin/tmate /bin/
 
 LABEL com.centurylinklabs.watchtower.stop-signal="SIGINT"
