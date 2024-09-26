@@ -5,6 +5,7 @@
 package compiler
 
 import (
+	"strings"
 	"github.com/drone-runners/drone-runner-docker/engine"
 	"github.com/drone-runners/drone-runner-docker/engine/compiler/shell"
 	"github.com/drone-runners/drone-runner-docker/engine/compiler/shell/powershell"
