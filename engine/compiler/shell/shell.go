@@ -77,5 +77,4 @@ if [ "${DRONE_BUILD_DEBUG}" = "true" ]; then
 	fi
 	trap remote_debug EXIT
 fi
-#END
 `

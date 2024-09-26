@@ -16,7 +16,7 @@ func Test_trimImage(t *testing.T) {
 			want: "golang",
 		},
 		{
-			from: "golang:latest",
+			from: "golang:alpine",
 			want: "golang",
 		},
 		{
@@ -28,7 +28,7 @@ func Test_trimImage(t *testing.T) {
 			want: "golang",
 		},
 		{
-			from: "library/golang:latest",
+			from: "library/golang:alpine",
 			want: "golang",
 		},
 		{
@@ -68,11 +68,11 @@ func Test_expandImage(t *testing.T) {
 	}{
 		{
 			from: "golang",
-			want: "docker.io/library/golang:latest",
+			want: "docker.io/library/golang:alpine",
 		},
 		{
-			from: "golang:latest",
-			want: "docker.io/library/golang:latest",
+			from: "golang:alpine",
+			want: "docker.io/library/golang:alpine",
 		},
 		{
 			from: "golang:1.0.0",
@@ -80,11 +80,11 @@ func Test_expandImage(t *testing.T) {
 		},
 		{
 			from: "library/golang",
-			want: "docker.io/library/golang:latest",
+			want: "docker.io/library/golang:alpine",
 		},
 		{
-			from: "library/golang:latest",
-			want: "docker.io/library/golang:latest",
+			from: "library/golang:alpine",
+			want: "docker.io/library/golang:alpine",
 		},
 		{
 			from: "library/golang:1.0.0",
@@ -96,7 +96,7 @@ func Test_expandImage(t *testing.T) {
 		},
 		{
 			from: "gcr.io/golang",
-			want: "gcr.io/golang:latest",
+			want: "gcr.io/golang:alpine",
 		},
 		{
 			from: "gcr.io/golang:1.0.0",
@@ -127,12 +127,12 @@ func Test_matchImage(t *testing.T) {
 			want: true,
 		},
 		{
-			from: "golang:latest",
+			from: "golang:alpine",
 			to:   "golang",
 			want: true,
 		},
 		{
-			from: "library/golang:latest",
+			from: "library/golang:alpine",
 			to:   "golang",
 			want: true,
 		},
@@ -143,11 +143,11 @@ func Test_matchImage(t *testing.T) {
 		},
 		{
 			from: "golang",
-			to:   "golang:latest",
+			to:   "golang:alpine",
 			want: true,
 		},
 		{
-			from: "library/golang:latest",
+			from: "library/golang:alpine",
 			to:   "library/golang",
 			want: true,
 		},
@@ -162,13 +162,13 @@ func Test_matchImage(t *testing.T) {
 			want: true,
 		},
 		{
-			from: "gcr.io/golang:latest",
+			from: "gcr.io/golang:alpine",
 			to:   "gcr.io/golang",
 			want: true,
 		},
 		{
 			from: "gcr.io/golang",
-			to:   "gcr.io/golang:latest",
+			to:   "gcr.io/golang:alpine",
 			want: true,
 		},
 		{
@@ -211,17 +211,17 @@ func Test_matchHostname(t *testing.T) {
 			want:     true,
 		},
 		{
-			image:    "golang:latest",
+			image:    "golang:alpine",
 			hostname: "docker.io",
 			want:     true,
 		},
 		{
-			image:    "golang:latest",
+			image:    "golang:alpine",
 			hostname: "index.docker.io",
 			want:     true,
 		},
 		{
-			image:    "library/golang:latest",
+			image:    "library/golang:alpine",
 			hostname: "docker.io",
 			want:     true,
 		},
@@ -281,12 +281,12 @@ func Test_matchTag(t *testing.T) {
 		},
 		{
 			a:    "golang",
-			b:    "golang:latest",
+			b:    "golang:alpine",
 			want: true,
 		},
 		{
 			a:    "docker.io/library/golang",
-			b:    "golang:latest",
+			b:    "golang:alpine",
 			want: true,
 		},
 		{
@@ -322,7 +322,7 @@ func Test_isLatest(t *testing.T) {
 			want: true,
 		},
 		{
-			name: "golang:latest",
+			name: "golang:alpine",
 			want: true,
 		},
 		{
@@ -330,7 +330,7 @@ func Test_isLatest(t *testing.T) {
 			want: true,
 		},
 		{
-			name: "docker.io/library/golang:latest",
+			name: "docker.io/library/golang:alpine",
 			want: true,
 		},
 		{

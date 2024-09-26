@@ -1,4 +1,4 @@
-module github.com/wellcare/drone-runner-docker
+module github.com/drone-runners/drone-runner-docker
 
 go 1.16
 

@@ -7,10 +7,10 @@ package compiler
 import (
 	"strings"
 
-	"github.com/wellcare/drone-runner-docker/engine"
-	"github.com/wellcare/drone-runner-docker/engine/resource"
-	"github.com/wellcare/drone-runner-docker/internal/docker/image"
-	"github.com/wellcare/drone-runner-docker/internal/encoder"
+	"github.com/drone-runners/drone-runner-docker/engine"
+	"github.com/drone-runners/drone-runner-docker/engine/resource"
+	"github.com/drone-runners/drone-runner-docker/internal/docker/image"
+	"github.com/drone-runners/drone-runner-docker/internal/encoder"
 
 	"github.com/drone/runner-go/pipeline/runtime"
 )

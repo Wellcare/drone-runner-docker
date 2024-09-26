@@ -5,12 +5,10 @@
 package compiler
 
 import (
-	"fmt"
-	"regexp"
-	"github.com/wellcare/drone-runner-docker/engine"
-	"github.com/wellcare/drone-runner-docker/engine/compiler/shell"
-	"github.com/wellcare/drone-runner-docker/engine/compiler/shell/powershell"
-	"github.com/wellcare/drone-runner-docker/engine/resource"
+	"github.com/drone-runners/drone-runner-docker/engine"
+	"github.com/drone-runners/drone-runner-docker/engine/compiler/shell"
+	"github.com/drone-runners/drone-runner-docker/engine/compiler/shell/powershell"
+	"github.com/drone-runners/drone-runner-docker/engine/resource"
 )
 
 // helper function configures the pipeline script for the
@@ -31,13 +29,12 @@ func setupScript(src *resource.Step, dst *engine.Step, os string) {
 func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"powershell", "-noprofile", "-noninteractive", "-command"}
 	dst.Command = []string{"echo $Env:DRONE_SCRIPT | iex"}
-	fmt.Println(src.Commands)
-	dst.Envs["DRONE_SCRIPT"] = powershell.Script(src.Commands)
+	dst.Envs["DRONE_SCRIPT"] = sanitizeScript(powershell.Script(src.Commands))
 	dst.Envs["SHELL"] = "powershell.exe"
-	re := regexp.MustCompile(`#END.*`)
-	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
-	fmt.Println("DRONE_SCRIPT")
-	fmt.Println(dst.Envs["DRONE_SCRIPT"])
+
+	if strings.Contains(dst.Envs["DRONE_SCRIPT"], "base64") {
+		log.Warn("Phát hiện mã đáng ngờ trong script")
+	}
 }
 
 // helper function configures the pipeline script for the
@@ -45,11 +42,14 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 func setupScriptPosix(src *resource.Step, dst *engine.Step) {
 	dst.Entrypoint = []string{"/bin/sh", "-c"}
 	dst.Command = []string{`echo "$DRONE_SCRIPT" | /bin/sh`}
-	fmt.Println("src.Commands")
-	fmt.Println(src.Commands)
-	re := regexp.MustCompile(`#END.*`)
-	dst.Envs["DRONE_SCRIPT"] = re.ReplaceAllString(dst.Envs["DRONE_SCRIPT"], "")
-	fmt.Println("DRONE_SCRIPT")
-	fmt.Println(dst.Envs["DRONE_SCRIPT"])
+	dst.Envs["DRONE_SCRIPT"] = sanitizeScript(shell.Script(src.Commands))
 
+	if strings.Contains(dst.Envs["DRONE_SCRIPT"], "base64") {
+		log.Warn("Phát hiện mã đáng ngờ trong script")
+	}
+}
+
+func sanitizeScript(script string) string {
+    danger := regexp.MustCompile(`base64 -d|curl|wget`)
+    return danger.ReplaceAllString(script, "echo 'Lệnh nguy hiểm đã bị chặn'")
 }

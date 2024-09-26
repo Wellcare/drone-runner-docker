@@ -13,11 +13,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/wellcare/drone-runner-docker/command/internal"
-	"github.com/wellcare/drone-runner-docker/engine"
-	"github.com/wellcare/drone-runner-docker/engine/compiler"
-	"github.com/wellcare/drone-runner-docker/engine/linter"
-	"github.com/wellcare/drone-runner-docker/engine/resource"
+	"github.com/drone-runners/drone-runner-docker/command/internal"
+	"github.com/drone-runners/drone-runner-docker/engine"
+	"github.com/drone-runners/drone-runner-docker/engine/compiler"
+	"github.com/drone-runners/drone-runner-docker/engine/linter"
+	"github.com/drone-runners/drone-runner-docker/engine/resource"
 
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/envsubst"
