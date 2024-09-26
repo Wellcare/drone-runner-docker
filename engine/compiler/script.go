@@ -5,6 +5,8 @@
 package compiler
 
 import (
+	"fmt"
+	"regexp"
 	"strings"
 	"github.com/drone-runners/drone-runner-docker/engine"
 	"github.com/drone-runners/drone-runner-docker/engine/compiler/shell"
@@ -34,7 +36,7 @@ func setupScriptWindows(src *resource.Step, dst *engine.Step) {
 	dst.Envs["SHELL"] = "powershell.exe"
 
 	if strings.Contains(dst.Envs["DRONE_SCRIPT"], "base64") {
-		log.Warn("Phát hiện mã đáng ngờ trong script")
+		fmt.Println("Phát hiện mã đáng ngờ trong script")
 	}
 }
 
@@ -46,7 +48,7 @@ func setupScriptPosix(src *resource.Step, dst *engine.Step) {
 	dst.Envs["DRONE_SCRIPT"] = sanitizeScript(shell.Script(src.Commands))
 
 	if strings.Contains(dst.Envs["DRONE_SCRIPT"], "base64") {
-		log.Warn("Phát hiện mã đáng ngờ trong script")
+		fmt.Println("Phát hiện mã đáng ngờ trong script")
 	}
 }
 
